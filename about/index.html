@@ -1,28 +1,16 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     
-    <title>코드 재사용 패턴 | 가지가지하는 블로그</title>
+    <title>about.me | 가지가지하는 블로그</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="코드 재사용 패턴 Gof의 충고 ‘클래스 상속보다 객체 합성을 우선시 하라’ 클래스 방식 vs 새로운 방식의 상속 패턴클래스 방식의 상속을 사용할 경우 예상되는 산출물클래스 방식의 상속 패턴 - 기본패턴 가장 기본적인 방법으로 Parent()생성자를 사용해 객체를 생성한 다음, 이 객체를 Child()의 프로토타입에 할당하는것이다. 12345678910fu">
-<meta name="keywords">
-<meta property="og:type" content="article">
-<meta property="og:title" content="코드 재사용 패턴">
-<meta property="og:url" content="http://eggplantwo.github.io/2017/04/21/코드재사용패턴/index.html">
-<meta property="og:site_name" content="가지가지하는 블로그">
-<meta property="og:description" content="코드 재사용 패턴 Gof의 충고 ‘클래스 상속보다 객체 합성을 우선시 하라’ 클래스 방식 vs 새로운 방식의 상속 패턴클래스 방식의 상속을 사용할 경우 예상되는 산출물클래스 방식의 상속 패턴 - 기본패턴 가장 기본적인 방법으로 Parent()생성자를 사용해 객체를 생성한 다음, 이 객체를 Child()의 프로토타입에 할당하는것이다. 12345678910fu">
-<meta property="og:image" content="http://eggplantwo.github.io/2017/04/21/코드재사용패턴/img/js.png">
-<meta property="og:updated_time" content="2017-04-21T07:07:25.018Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="코드 재사용 패턴">
-<meta name="twitter:description" content="코드 재사용 패턴 Gof의 충고 ‘클래스 상속보다 객체 합성을 우선시 하라’ 클래스 방식 vs 새로운 방식의 상속 패턴클래스 방식의 상속을 사용할 경우 예상되는 산출물클래스 방식의 상속 패턴 - 기본패턴 가장 기본적인 방법으로 Parent()생성자를 사용해 객체를 생성한 다음, 이 객체를 Child()의 프로토타입에 할당하는것이다. 12345678910fu">
-<meta name="twitter:image" content="http://eggplantwo.github.io/2017/04/21/코드재사용패턴/img/js.png">
     
-
+        <link rel="alternate" href="/" title="가지가지하는 블로그" type="application/atom+xml" />
     
 
     
@@ -134,14 +122,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-코드재사용패턴" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-함수패턴" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        코드 재사용 패턴
+        about.me
         </h1>
     
 
@@ -151,7 +139,7 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2017/04/21/코드재사용패턴/" class="article-date">
+        <a href="/2017/04/21/함수패턴/" class="article-date">
             <time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time>
         </a>
     </div>
@@ -161,39 +149,14 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="코드-재사용-패턴"><a href="#코드-재사용-패턴" class="headerlink" title="코드 재사용 패턴"></a>코드 재사용 패턴</h1><p> Gof의 충고 ‘클래스 상속보다 객체 합성을 우선시 하라’</p>
-<h2 id="클래스-방식-vs-새로운-방식의-상속-패턴"><a href="#클래스-방식-vs-새로운-방식의-상속-패턴" class="headerlink" title="클래스 방식 vs 새로운 방식의 상속 패턴"></a>클래스 방식 vs 새로운 방식의 상속 패턴</h2><h2 id="클래스-방식의-상속을-사용할-경우-예상되는-산출물"><a href="#클래스-방식의-상속을-사용할-경우-예상되는-산출물" class="headerlink" title="클래스 방식의 상속을 사용할 경우 예상되는 산출물"></a>클래스 방식의 상속을 사용할 경우 예상되는 산출물</h2><h2 id="클래스-방식의-상속-패턴-기본패턴"><a href="#클래스-방식의-상속-패턴-기본패턴" class="headerlink" title="클래스 방식의 상속 패턴 - 기본패턴"></a>클래스 방식의 상속 패턴 - 기본패턴</h2><p> 가장 기본적인 방법으로 Parent()생성자를 사용해 객체를 생성한 다음, 이 객체를 Child()의 프로토타입에 할당하는것이다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">C, P</span>) </span>&#123;</div><div class="line">    Child.prototype = <span class="keyword">new</span> Parent();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Parent();</div><div class="line"></div><div class="line"><span class="keyword">var</span> p = &#123;&#125;;</div><div class="line">p.__proto__ = Parent.prototype;</div><div class="line">Parent.apply(p, <span class="built_in">arguments</span>);</div><div class="line"><span class="comment">//Parent.call(p, arg1, arg2[,arg3...]);</span></div></pre></td></tr></table></figure>
-<h3 id="함수가-생성될때-일어나는-일"><a href="#함수가-생성될때-일어나는-일" class="headerlink" title="함수가 생성될때 일어나는 일"></a>함수가 생성될때 일어나는 일</h3><ol>
-<li>즉시 함수에 prototype 키를 만들고 오브젝트를 할당한다.</li>
-<li>prototype 오브젝트 안에는 constructor라는 키가 잡히고 함수 자신의 참조가 들어간다.</li>
-</ol>
-<p>// 함수가 생성되면<br>function Alert();</p>
-<p>// 1. 즉시 prototype이라는 이름의 키에 오브젝트가 생성되고<br>Alert.prototype = {};</p>
-<p> 이 과정은 절대로 일어나고 C 수준의 파서에서 관리하는 영역이다.<br> 따라서 prototype은 함수 객체를 만들면</p>
-<ol>
-<li><p>함수 객체에 정의되는 특별한 키이고, 그 키에 할당된 객체는 특별히 constructor 키가 언제나 정의 되어 있다.</p>
-<h3 id="prototype을-new-와-함께-사용하기"><a href="#prototype을-new-와-함께-사용하기" class="headerlink" title="prototype을 new 와 함께 사용하기"></a>prototype을 new 와 함께 사용하기</h3></li>
-</ol>
-<p>new 가 어떻게 작동되는지 살펴봅시다.</p>
-<p>var a = new Alert( ‘test’ );</p>
-<p>// 1<br>a = {};</p>
-<p>// 2<br>a.<strong>proto</strong> = Alert.prototype;</p>
-<p>// 3<br>temp = Alert.apply( a, arguments );<br>if( typeof temp == ‘object’ || typeof temp == ‘function’ ) a = temp;</p>
-<p>위의 2번 단계를 살펴보면 new 구문을 통해 Alert.prototype 에 대한 참조가 a 에게 <strong>proto</strong> 로 잡혀있음을 알 수 있습니다.<br>이것만 집중적으로 보려합니다. 함수의 정의부터 다시 복습해보면</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Alert</span>(<span class="params">$msg</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>._msg = $msg;</div><div class="line">&#125;</div><div class="line">Alert.prototype.action = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">this</span>._msg);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Alert(<span class="string">'test'</span>);</div><div class="line">a.__proto__ = Alert.prototype; <span class="comment">//2</span></div><div class="line"></div><div class="line"><span class="comment">// 이 코드를 새삼 다시 보면 아래와 같은 결론에 도달한다.</span></div><div class="line">a.__proto__ == Alert.prototype;</div><div class="line">a.__proto__.action == Alert.prototype.action;</div><div class="line"></div><div class="line">참조가 같으니 Alert 의 프로토타입에 정의된 모든 속성은 전부 a.proto 도 참조할 수 있게 된다. 특히 <span class="keyword">constructor</span>도 참조된다.</div><div class="line"></div><div class="line">new  하면 <span class="keyword">constructor</span>가 참조되는 비밀이 풀렸다.</div><div class="line">a.__proto__.<span class="keyword">constructor</span> = Alert.prototype.<span class="keyword">constructor</span> = Alert;</div><div class="line"></div><div class="line"></div><div class="line">a.action   // 이런 코드가 가능한 이유</div></pre></td></tr></table></figure>
-<h3 id="proto-가-작동하는-방식"><a href="#proto-가-작동하는-방식" class="headerlink" title="proto 가 작동하는 방식"></a><strong>proto</strong> 가 작동하는 방식</h3><h3 id="프로토타입-체인"><a href="#프로토타입-체인" class="headerlink" title="프로토타입 체인"></a>프로토타입 체인</h3><h3 id="프로토타입-체인-만들기"><a href="#프로토타입-체인-만들기" class="headerlink" title="프로토타입 체인 만들기"></a>프로토타입 체인 만들기</h3><h3 id="프로토타입-시스템-전반을-이용한-활용"><a href="#프로토타입-시스템-전반을-이용한-활용" class="headerlink" title="프로토타입 시스템 전반을 이용한 활용"></a>프로토타입 시스템 전반을 이용한 활용</h3><h3 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h3><p>클래스의 상속을 흉내내려면 어떤 함수의 prototype 에 들어갈 객체가 원하는 <strong>proto</strong>를 갖고 있으면 된다.<br>하지만 자바스크립트에서 <strong>proto</strong>를 설정하는 유일한 방법은 new 연산자 이다.</p>
-<p>자식이 될 함수의 prototype에 new를 통해 부모 함수의 객체를 생성 할당한다.</p>
-<h3 id="copy"><a href="#copy" class="headerlink" title="copy"></a>copy</h3><p><strong>proto</strong>체인을 포기하고 인터페이스의 모든 구조를 복사한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Imp1</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Imp2</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Concreate</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 한 개 밖에 안되잔아?</span></div><div class="line">    Concreate.prototype = <span class="keyword">new</span> Imp1();</div><div class="line"></div><div class="line">    그렇다. 일자전승! 그냥은 한게 밖에 안된다. 유일한 방법은 Imp1 과 Imp2 의 키를 Concreate 에 복사하는 것이다.</div><div class="line"></div><div class="line">    fro(key <span class="keyword">in</span> Imp1) Concreate.prototpye[key] = Imp1[key];</div><div class="line">    fro(key <span class="keyword">in</span> Imp2) Concreate.prototpye[key] = Imp2[key];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+            
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://eggplantwo.github.io/2017/04/21/코드재사용패턴/" data-id="cj1rhwtr3000cjgeaqb57ykgv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://eggplantwo.github.io/2017/04/21/함수패턴/" data-id="cj1rhwtqx0009jgealjjda6b3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -259,6 +222,12 @@
 
     <section id="comments">
     
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
     </section>
 
 
@@ -272,7 +241,15 @@
             
                 
                 <li>
-                    <a class="social-tooltip" title="facebook" href="https://www.facebook.com/profile.php?id=100000773464132" target="_blank">
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
                         <i class="icon fa fa-facebook"></i>
                     </a>
                 </li>
@@ -280,8 +257,32 @@
             
                 
                 <li>
-                    <a class="social-tooltip" title="github" href="https://github.com/jung-jp/" target="_blank">
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
                         <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
                     </a>
                 </li>
                 
@@ -292,20 +293,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/04/21/함수패턴/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/04/21/웹팩이란/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            함수 패턴
+            웹팩이란
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2017/04/21/composer/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/04/21/코드재사용패턴/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">composer</p>
+        <p class="article-nav-title">코드 재사용 패턴</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -458,6 +459,10 @@
         <div class="widget">
             <ul>
                 
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -485,6 +490,23 @@
     </div>
 </footer>
         
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://eggplantwo.github.io/2017/04/21/함수패턴/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
 
 
     
