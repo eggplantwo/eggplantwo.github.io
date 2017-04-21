@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>함수 패턴 | 가지가지하는 블로그</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="함수함수는 일급 객체이다.함수는 유효범위(scope)를 제공한다.  런타임, 즉 프로그램 실행 중에 동적으로 생성할 수 있다. 변수에 할당할 수 있고, 다름 변수에 참조를 복사할 수 있으며, 확장가능하고, 특별한 경우를 제외하면 삭제가 가능하다. 다른변수의 인자로 전달할 수 있고, 다른 함수의 반환 값이 될 수 있다. 자기 자신의 프로퍼티와 메서드를 가질">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="함수 패턴">
+<meta property="og:url" content="http://eggplantwo.github.io/2017/04/21/함수패턴/index.html">
+<meta property="og:site_name" content="가지가지하는 블로그">
+<meta property="og:description" content="함수함수는 일급 객체이다.함수는 유효범위(scope)를 제공한다.  런타임, 즉 프로그램 실행 중에 동적으로 생성할 수 있다. 변수에 할당할 수 있고, 다름 변수에 참조를 복사할 수 있으며, 확장가능하고, 특별한 경우를 제외하면 삭제가 가능하다. 다른변수의 인자로 전달할 수 있고, 다른 함수의 반환 값이 될 수 있다. 자기 자신의 프로퍼티와 메서드를 가질">
+<meta property="og:image" content="http://eggplantwo.github.io/2017/04/21/함수패턴/img/js.png">
+<meta property="og:updated_time" content="2017-04-21T07:07:22.523Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="함수 패턴">
+<meta name="twitter:description" content="함수함수는 일급 객체이다.함수는 유효범위(scope)를 제공한다.  런타임, 즉 프로그램 실행 중에 동적으로 생성할 수 있다. 변수에 할당할 수 있고, 다름 변수에 참조를 복사할 수 있으며, 확장가능하고, 특별한 경우를 제외하면 삭제가 가능하다. 다른변수의 인자로 전달할 수 있고, 다른 함수의 반환 값이 될 수 있다. 자기 자신의 프로퍼티와 메서드를 가질">
+<meta name="twitter:image" content="http://eggplantwo.github.io/2017/04/21/함수패턴/img/js.png">
+    
+
+    
+        <link rel="alternate" href="/" title="가지가지하는 블로그" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">가지가지하는 블로그</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/css/">css</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/php/">php</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/javascript/">javascript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-함수패턴" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        함수 패턴
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/04/21/함수패턴/" class="article-date">
+            <time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h1><p>함수는 일급 객체이다.<br>함수는 유효범위(scope)를 제공한다.</p>
+<ul>
+<li>런타임, 즉 프로그램 실행 중에 동적으로 생성할 수 있다.</li>
+<li>변수에 할당할 수 있고, 다름 변수에 참조를 복사할 수 있으며, 확장가능하고, 특별한 경우를 제외하면 삭제가 가능하다.</li>
+<li>다른변수의 인자로 전달할 수 있고, 다른 함수의 반환 값이 될 수 있다.</li>
+<li>자기 자신의 프로퍼티와 메서드를 가질 수 있다.</li>
+</ul>
+<h2 id="콜백-패턴"><a href="#콜백-패턴" class="headerlink" title="콜백 패턴"></a>콜백 패턴</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">ver findNodes = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">10000</span>, nodes = [], found;</div><div class="line"></div><div class="line">    <span class="comment">// 콜백 함수를 호출할 수 있는지 확인한다.</span></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> callback !== <span class="string">'function'</span> ) &#123;</div><div class="line">        callback = <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (i) &#123;</div><div class="line">        i -= <span class="number">1</span>;</div><div class="line"></div><div class="line">        <span class="comment">/*</span></div><div class="line">            로직 구현</div><div class="line">            found = node;</div><div class="line">         */</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ( callback ) &#123;</div><div class="line">            callback(found)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        nodes.push(found);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> nodes;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> hide = <span class="function"><span class="keyword">function</span> (<span class="params">nodes</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="built_in">Object</span>.prototype.toString.call(nodes) === <span class="string">'[object Array]'</span> ) &#123;</div><div class="line">        <span class="keyword">var</span> i = <span class="number">0</span>; max = nodes.length;</div><div class="line">        <span class="keyword">for</span> ( ; i &lt; max; i += <span class="number">1</span> ) &#123;</div><div class="line">            nodes[i].style.display = <span class="string">'none'</span>;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        node.style.display = <span class="string">'none'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">findNodes( <span class="function"><span class="keyword">function</span>(<span class="params">node</span>) </span>&#123;</div><div class="line">    node.style.display = <span class="string">'none'</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="함수-반환하기"><a href="#함수-반환하기" class="headerlink" title="함수 반환하기"></a>함수 반환하기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> setup = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> my = setup(); <span class="comment">// alert(1);</span></div><div class="line">my(); <span class="comment">// alert(2);</span></div></pre></td></tr></table></figure>
+<p>setup()은 반환된 함수를 감싸고 있기 때문에 클로저를 생산한다.<br>클로저는 반환되는 함수에서는 접근할 수 있지만 코드 외부에서는 접근할 수 없기 때문에, 비공개 데이터 저장을 위해 사용 할 수있다.</p>
+<p>ex) 카운터 예제<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> setup = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> count += <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> next = setup();</div><div class="line">next(); <span class="comment">// 1</span></div><div class="line">next(); <span class="comment">// 2</span></div><div class="line">next(); <span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<h2 id="자기-자신을-정의하는-함수"><a href="#자기-자신을-정의하는-함수" class="headerlink" title="자기 자신을 정의하는 함수"></a>자기 자신을 정의하는 함수</h2><p>함수는 동적으로 정의할 수 있고 변수에 할당할 수 있다.<br>새로운 함수를 만들어 이미 다른 함수를 가지고 있는 변수에 할당한다면, 새로운 함수가 이전 함수를 덮어쓰게 된다.<br>포인터가 새로운 함수를 가리키도록 재사용하는 것이다.<br>본문 내에서도 이런일을 할 수 있는데, 이 경우 함수는 자기 자신을 새로운 구현으로 덮었고 재정의 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scareMe = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'Boo!'</span>);</div><div class="line">    scareMe = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"Double boo!"</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>이 패턴은 함수가 어떤 초기화 준비 작업을 단 한번만 수행할 경우에 유용하다.(lazy function pattern)<br>재 정의된 함수의 작업랼이 적기 때문에 애플리케이션 성능에 도움이 된다.<br>단점, 함수가 새로운 변수에 할당되면 예상과 달리 자기 자신을 정의하지 않는다.</p>
+<h2 id="즉시-실행-함수"><a href="#즉시-실행-함수" class="headerlink" title="즉시 실행 함수"></a>즉시 실행 함수</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 객체프로퍼티 정의에 사용 (처음에 한번만 값을 계산해 정의하고 계속 사용.)</span></div><div class="line"><span class="keyword">var</span> o = &#123;</div><div class="line">    <span class="attr">message</span> : (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> who = <span class="string">'me'</span>,</div><div class="line">            what = <span class="string">'call'</span>;</div><div class="line">        <span class="keyword">return</span> what + <span class="string">' '</span> + who;</div><div class="line">    &#125;()),</div><div class="line">    <span class="attr">getMsg</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.message;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// o.getMsg(); // call me</span></div><div class="line"><span class="comment">// o.message;  // call me</span></div></pre></td></tr></table></figure>
+<h2 id="초기화-시점의-분기"><a href="#초기화-시점의-분기" class="headerlink" title="초기화 시점의 분기"></a>초기화 시점의 분기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> utils = &#123;</div><div class="line">    <span class="attr">addListener</span> : <span class="literal">null</span>,</div><div class="line">    <span class="attr">removeListener</span> : <span class="literal">null</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 구현</span></div><div class="line"><span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">window</span>.addEventListener === <span class="string">'function'</span> ) &#123;</div><div class="line">    utils.addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">        el.addEventListener(type, fn, <span class="literal">false</span>);</div><div class="line">    &#125;;</div><div class="line">    utils.removeListener = <span class="function"><span class="keyword">function</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">        el.addEventListener(type, fn, <span class="literal">false</span>);</div><div class="line">    &#125;;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">document</span>.attachEvent === <span class="string">'function'</span> ) &#123;</div><div class="line">    <span class="comment">// 구현...</span></div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    utils.addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">        el[<span class="string">'on'</span> + type] = fn;</div><div class="line">    &#125;</div><div class="line">    utils.removeListener = <span class="function"><span class="keyword">function</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">        el[<span class="string">'on'</span> + type] = <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="함수-프로퍼티-메모이-제이션-패턴"><a href="#함수-프로퍼티-메모이-제이션-패턴" class="headerlink" title="함수 프로퍼티 - 메모이 제이션 패턴"></a>함수 프로퍼티 - 메모이 제이션 패턴</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getId = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> cacheId = &#123;&#125;;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>( !cacheId[id] ) &#123;</div><div class="line">            <span class="built_in">console</span>.log(id);</div><div class="line">            cacheId[id] = <span class="built_in">document</span>.getElementById(id);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cacheId[id];</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h2 id="설정-객체-패턴"><a href="#설정-객체-패턴" class="headerlink" title="설정 객체 패턴"></a>설정 객체 패턴</h2><p>함수의 매개변수를 객체로 받는다.<br>유지보수 용이, 다양한 요구사항에 대응.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> info = &#123;</div><div class="line">    <span class="attr">a</span> : <span class="string">'1'</span>,</div><div class="line">    <span class="attr">b</span> : <span class="string">'2'</span>,</div><div class="line">    <span class="attr">c</span> : <span class="string">'3'</span></div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">info</span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="커리"><a href="#커리" class="headerlink" title="커리"></a>커리</h2><p>부분적인 함수 적용<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">&#125;</div><div class="line"><span class="comment">//모든 인자를 적용</span></div><div class="line">add.apply(<span class="literal">null</span>, [<span class="number">4</span>, <span class="number">5</span>]); <span class="comment">// 9</span></div><div class="line"></div><div class="line"><span class="comment">// 인자를 부분 적으로 적용</span></div><div class="line"><span class="keyword">var</span> newadd = add.partialApply(<span class="literal">null</span>, [<span class="number">4</span>]);</div><div class="line">newadd.apply(<span class="literal">null</span>, [<span class="number">5</span>]); <span class="comment">// 9</span></div></pre></td></tr></table></figure></p>
+<p>자바스크립트는 기본적으로 이렇게 동작하지 않지만 굉장히 동적이기 때문에 이렇게 동작하도록 만들 수 있다.<br>커링 - 함수가 부분적인 적용을 이해하고 처리할 수 있도록 만드는 과정</p>
+<h3 id="커링-Curring"><a href="#커링-Curring" class="headerlink" title="커링(Curring)"></a>커링(Curring)</h3><p>수학자 하스켈 커리의 이름에서 따옴. (하스켈 언어와 같은 유래)<br>커링은 함수를 변형하는 과정이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 커링된 add()</span></div><div class="line"><span class="comment">// 부분적인 인자의 목록을 받는다.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> ㅛ === <span class="string">'undefined'</span> ) &#123; <span class="comment">// 부분적인 적용</span></div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> x + y;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> x + y; <span class="comment">// 전체 인자 적용</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 테슽</span></div><div class="line"><span class="keyword">typeof</span> add; <span class="comment">// function</span></div><div class="line">add(<span class="number">3</span>)(<span class="number">4</span>); <span class="comment">// 7</span></div><div class="line"></div><div class="line"><span class="comment">// 새로운 함수를 만들어 저장</span></div><div class="line"><span class="keyword">var</span> add2000 = add(<span class="number">2000</span>);</div><div class="line">add2000(<span class="number">10</span>); <span class="comment">// 2010;</span></div></pre></td></tr></table></figure>
+<p>범용 커링 함수의 코드</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">schonfinkelize</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// 전달받은 매개변수 객체</span></div><div class="line">    <span class="keyword">var</span> slice = <span class="built_in">Array</span>.prototype.slice,</div><div class="line">        stored_args = slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</div><div class="line">        <span class="built_in">console</span>.log(stored_args); <span class="comment">// 배욜 1 부터 끝</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</div><div class="line">        <span class="keyword">var</span> new_args = slice.call(<span class="built_in">arguments</span>),</div><div class="line">            aregs = stored_args.concat(new_args);</div><div class="line">            <span class="built_in">console</span>.log(aregs);</div><div class="line">        <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 일반함수</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"> x, y </span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 함수를 커링하여 새로운 함수를 얻는다.</span></div><div class="line"><span class="keyword">var</span> newadd = schonfinkelize(add, <span class="number">5</span>);</div><div class="line">newadd(<span class="number">4</span>); <span class="comment">// 9</span></div><div class="line"></div><div class="line"><span class="comment">// 매개변수가 여러개이고, 커링이 여러단계 일때</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b, c, d, e, f</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a+ b+c+d+e+f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 여러개의 인자 사용;</span></div><div class="line">schonfinkelize(add, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)(<span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 16</span></div><div class="line"></div><div class="line"><span class="comment">// 2단계 커링</span></div><div class="line"><span class="keyword">var</span> addOne = schonfinkelize(add, <span class="number">1</span>);</div><div class="line">addOne(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>); <span class="comment">// 41</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> addSix = schonfinkelize(addOne, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// addOne : 1단계에서 1값이 커링된 상태.</span></div><div class="line">addSix(<span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 16</span></div></pre></td></tr></table></figure>
+<ul>
+<li>커링을 사용해야 하는 이유</li>
+</ul>
+<h1 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h1>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://eggplantwo.github.io/2017/04/21/함수패턴/" data-id="cj1rhwtqx0009jgealjjda6b3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/04/21/웹팩이란/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            웹팩이란
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/04/21/코드재사용패턴/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">코드 재사용 패턴</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/composer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/composer.jpg)" alt="composer" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/php/">php</a></p>
+                            <p class="item-title"><a href="/2017/04/21/composer/" class="title">composer</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:10:04.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/CSS_Transition/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/css/">css</a></p>
+                            <p class="item-title"><a href="/2017/04/21/CSS_Transition/" class="title">CSS 트랜지션</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:04:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/함수패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="함수 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/함수패턴/" class="title">함수 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/코드재사용패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="코드 재사용 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/코드재사용패턴/" class="title">코드 재사용 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/웹팩이란/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="웹팩이란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/웹팩이란/" class="title">웹팩이란</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:02:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 jaepil Jung</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://eggplantwo.github.io/2017/04/21/함수패턴/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>객체생성패턴 | 가지가지하는 블로그</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="객체 생성 패턴네임스페이스 패턴비공개 프로퍼티와 메서드비공개 멤버와 특권 멤버모듈 패턴다음의 패턴들 여러개를 조합.  네임 스페이스 패턴 즉시 실행 함수 비공개 멤버와 특권 멤버 의존 관계 선언  12  모듈 노출 패턴  …  생성자를 생성하는 모듈  …  모듈에 전역 변수 가져오기  …   샌드박스 패턴.네임스페이스 패턴의 단점을 보완  전역 객체가 단">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="객체생성패턴">
+<meta property="og:url" content="http://eggplantwo.github.io/2017/04/21/객체생성패턴/index.html">
+<meta property="og:site_name" content="가지가지하는 블로그">
+<meta property="og:description" content="객체 생성 패턴네임스페이스 패턴비공개 프로퍼티와 메서드비공개 멤버와 특권 멤버모듈 패턴다음의 패턴들 여러개를 조합.  네임 스페이스 패턴 즉시 실행 함수 비공개 멤버와 특권 멤버 의존 관계 선언  12  모듈 노출 패턴  …  생성자를 생성하는 모듈  …  모듈에 전역 변수 가져오기  …   샌드박스 패턴.네임스페이스 패턴의 단점을 보완  전역 객체가 단">
+<meta property="og:image" content="http://eggplantwo.github.io/2017/04/21/객체생성패턴/img/js.png">
+<meta property="og:updated_time" content="2017-04-21T07:07:32.226Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="객체생성패턴">
+<meta name="twitter:description" content="객체 생성 패턴네임스페이스 패턴비공개 프로퍼티와 메서드비공개 멤버와 특권 멤버모듈 패턴다음의 패턴들 여러개를 조합.  네임 스페이스 패턴 즉시 실행 함수 비공개 멤버와 특권 멤버 의존 관계 선언  12  모듈 노출 패턴  …  생성자를 생성하는 모듈  …  모듈에 전역 변수 가져오기  …   샌드박스 패턴.네임스페이스 패턴의 단점을 보완  전역 객체가 단">
+<meta name="twitter:image" content="http://eggplantwo.github.io/2017/04/21/객체생성패턴/img/js.png">
+    
+
+    
+        <link rel="alternate" href="/" title="가지가지하는 블로그" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">가지가지하는 블로그</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/css/">css</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/php/">php</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/javascript/">javascript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-객체생성패턴" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        객체생성패턴
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/04/21/객체생성패턴/" class="article-date">
+            <time datetime="2017-04-21T07:00:31.000Z" itemprop="datePublished">2017-04-21</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="객체-생성-패턴"><a href="#객체-생성-패턴" class="headerlink" title="객체 생성 패턴"></a>객체 생성 패턴</h1><h2 id="네임스페이스-패턴"><a href="#네임스페이스-패턴" class="headerlink" title="네임스페이스 패턴"></a>네임스페이스 패턴</h2><h2 id="비공개-프로퍼티와-메서드"><a href="#비공개-프로퍼티와-메서드" class="headerlink" title="비공개 프로퍼티와 메서드"></a>비공개 프로퍼티와 메서드</h2><h3 id="비공개-멤버와-특권-멤버"><a href="#비공개-멤버와-특권-멤버" class="headerlink" title="비공개 멤버와 특권 멤버"></a>비공개 멤버와 특권 멤버</h3><h2 id="모듈-패턴"><a href="#모듈-패턴" class="headerlink" title="모듈 패턴"></a>모듈 패턴</h2><p>다음의 패턴들 여러개를 조합.</p>
+<ul>
+<li>네임 스페이스 패턴</li>
+<li>즉시 실행 함수</li>
+<li>비공개 멤버와 특권 멤버</li>
+<li>의존 관계 선언</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<ul>
+<li><p>모듈 노출 패턴<br>  …</p>
+</li>
+<li><p>생성자를 생성하는 모듈<br>  …</p>
+</li>
+<li><p>모듈에 전역 변수 가져오기<br>  …</p>
+</li>
+</ul>
+<h1 id="샌드박스-패턴"><a href="#샌드박스-패턴" class="headerlink" title="샌드박스 패턴."></a>샌드박스 패턴.</h1><p>네임스페이스 패턴의 단점을 보완</p>
+<ul>
+<li>전역 객체가 단 하나의 전역변수에 의존한다.<br>따라서 동일한 애플리케이션이나 라이브러리의 두 가지 버전을 한 페이지에서 실행시키는 것이 불가능 하다.<br>전역변수 명이 모두 하나이기 때문.</li>
+<li>MYAPP.utilities.array 와 같이 점으로 연결된 긴 이름을 써야 하고 런타임에는 탐색 작업을 거쳐야 한다.</li>
+</ul>
+<h3 id="전역-생성자"><a href="#전역-생성자" class="headerlink" title="전역 생성자"></a>전역 생성자</h3><p>네임스페이스 패턴에서는 전역 객체가 하나다. 샌드박스 패턴의 유일한 전역은 생성자다.<br>생성자에 콜백 함수를 전달해 해당 코드를 샌드박스 내부 환경으로 격리시킨다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Sandbox( <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) </span>&#123;</div><div class="line">    <span class="comment">// coding...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>box 객체는 네임스페이스 패턴에서 MYAPP과 같은 것이다. 코드가 동작하는데 필요한 모든 라이브러리 기능이 여기에 들어간다.</p>
+<h3 id="패턴에-추가해-보기"><a href="#패턴에-추가해-보기" class="headerlink" title="패턴에 추가해 보기"></a>패턴에 추가해 보기</h3><ul>
+<li>new 강제한다. new를 쓰지않아도 자동으로 처리</li>
+<li>Sandbox() 생성자가 선택적인 인자를 하나 이상 받을 수 있게 한다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Sandbox( [<span class="string">'ajax'</span>, <span class="string">'event'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">    <span class="comment">// coding...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Sandbox( <span class="string">'ajax'</span>, <span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">    <span class="comment">// coding...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 모든 모듈을 사용한다는 의미로 '*'이나, 생략도 생각해 볼 수 있다.</span></div><div class="line"></div><div class="line">Sandbox( <span class="string">'*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">    <span class="comment">// coding...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Sandbox( <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">    <span class="comment">// coding...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 샌드박스 객체의 인스턴스를 여러 개 만드는 예제.</span></div><div class="line"></div><div class="line">Sandbox( <span class="string">'dom'</span>, <span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">    <span class="comment">// dom과 event를 가지고 작업하는 코드</span></div><div class="line"></div><div class="line">    Sandbox( <span class="string">'ajax'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) ) </span>&#123;</div><div class="line">        <span class="comment">// 샌드박스된 box 객체를  또 하나 만든다.</span></div><div class="line">        <span class="comment">// 이 'box' 객체는 바깥쪽 함수의 'box' 객체와는 다르다.</span></div><div class="line">        <span class="comment">// ...</span></div><div class="line">        <span class="comment">// ajax를 사용하는 작업 완료</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// ajax 모듈의 흔적이 없어진.</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>샌드박스 패턴을 사용하면 콜백 함수로 코드를 감싸기 때문에 전역 네임스페이스를 보호할 수 있다.</p>
+<h2 id="샌드박스-패턴-구현"><a href="#샌드박스-패턴-구현" class="headerlink" title="샌드박스 패턴 구현"></a>샌드박스 패턴 구현</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/** 생성자 구현  **/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sandbox</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>),</div><div class="line">        <span class="comment">// 마지막 인자는 콜백함수</span></div><div class="line">        callback = args.pop(),</div><div class="line">        modules = ( args[<span class="number">0</span>] &amp;&amp; <span class="keyword">typeof</span> args[<span class="number">0</span>] === <span class="string">'string'</span> ? args :  args[<span class="number">0</span>] ),</div><div class="line">        i;</div><div class="line"></div><div class="line">    <span class="comment">// 함수가 생성자로 호출되도록 보장한다.</span></div><div class="line">    <span class="keyword">if</span> ( !(<span class="keyword">this</span> <span class="keyword">instanceof</span> Sandbox) ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Sandbox(modules, callback);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// this에 필요한 프로퍼티들을 추가 한다.</span></div><div class="line">    <span class="keyword">this</span>.a = <span class="number">1</span>;</div><div class="line">    <span class="keyword">this</span>.b = <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 코어 this 객체에 모듈을 추가한다.</span></div><div class="line">    <span class="comment">// 모듈이 없거나 * 이면 사용 가능한 모든 모듈을 사용한다는 의미.</span></div><div class="line">    <span class="keyword">if</span> ( !modules || modules === <span class="string">'*'</span> || modules[<span class="number">0</span>] === <span class="string">'*'</span> ) &#123;</div><div class="line">        modules = [];</div><div class="line">        <span class="built_in">console</span>.log(Sandbox.modules);</div><div class="line">        <span class="keyword">for</span> ( i <span class="keyword">in</span> Sandbox.modules ) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span> ( Sandbox.modules.hasOwnProperty(i) ) &#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">                modules.push(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 필요한 모듈을 초기화 한다.</span></div><div class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; modules.length; i += <span class="number">1</span> ) &#123;</div><div class="line">        Sandbox.modules[modules[i]](<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 콜백함수 호출</span></div><div class="line">    callback(<span class="keyword">this</span>);</div><div class="line"></div><div class="line"></div><div class="line">    Sandbox.prototype = &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'MyApp'</span>,</div><div class="line">        <span class="attr">version</span> : <span class="string">'1.0'</span>,</div><div class="line">        <span class="attr">getName</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;</div><div class="line">    &#125;    </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** 모듈추가  **/</span></div><div class="line"></div><div class="line">Sandbox.modules = &#123;&#125;</div><div class="line">Sandbox.modules.dom = <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) </span>&#123;</div><div class="line">    box.getElement = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'getElement'</span>);</div><div class="line">    &#125;;</div><div class="line">    box.getStyle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'getStyle'</span>);</div><div class="line">    &#125;;</div><div class="line">    box.foo = <span class="string">'bar'</span>;</div><div class="line">&#125;</div><div class="line">Sandbox.modules.event = <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) </span>&#123;</div><div class="line">    <span class="comment">// 필요에 따라 다음과 같이 Sandbox 프로토타입에 접근할 수 있다.</span></div><div class="line">    <span class="comment">// box.constructor.prototype.m = 'mmm';</span></div><div class="line">    box.attachEvent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'attachEvent'</span>);</div><div class="line">    &#125;;</div><div class="line">    box.detachEvent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'detachEvent'</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">Sandbox.modules.ajax = <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) </span>&#123;</div><div class="line">    box.makeRequest = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'makeRequest'</span>);</div><div class="line">    &#125;;</div><div class="line">    box.getResponse = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'getResponse'</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Sandbox([<span class="string">'ajax'</span>, <span class="string">'event'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">box</span>) </span>&#123;</div><div class="line">    box.attachEvent();</div><div class="line">    box.makeRequest();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="스태틱-맴버"><a href="#스태틱-맴버" class="headerlink" title="스태틱 맴버"></a>스태틱 맴버</h3><p>공개 스태틱 맴버</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 생성자</span></div><div class="line"><span class="keyword">var</span> Gadget = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 스태틱 메서드</span></div><div class="line">Gadget.isShiny = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'you bet'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 프로토타입에 일반적인 함수를 추가한다.</span></div><div class="line">Gadget.prototype.setPrice = <span class="function"><span class="keyword">function</span>(<span class="params">price</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.price = price;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 프로토타입에 일반적인 메서드를 추가한다.</span></div><div class="line">Gadget.prototype.isShiny = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Gadget.isShiny.call(<span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>비공개 스태틱 맴버</p>
+<ul>
+<li>동일한 생성자 함수로 생성된 객체들이 공유하는 멤버.</li>
+<li>생성자 외부에서는 접금할 수 없다.</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Gadget = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> counter = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(++counter);</div><div class="line">    &#125;</div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">// getLastId() 추가</span></div><div class="line"><span class="keyword">var</span> Gadget = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> counter = <span class="number">0</span>,</div><div class="line">        NewGadget;</div><div class="line"></div><div class="line">    NewGadget = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        counter += <span class="number">1</span>;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    NewGadget.prototype.getLastId = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> counter;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 생성자를 덮어 쓴다.</span></div><div class="line">    <span class="keyword">return</span> NewGadget;</div><div class="line"></div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Gadget();</div><div class="line">a.getLastId();</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> Gadget();</div><div class="line">b.getLastId();</div></pre></td></tr></table></figure>
+<h3 id="객체-상수-es6-const"><a href="#객체-상수-es6-const" class="headerlink" title="객체 상수 ( es6 const )"></a>객체 상수 ( es6 const )</h3><h3 id="체이닝-패턴"><a href="#체이닝-패턴" class="headerlink" title="체이닝 패턴"></a>체이닝 패턴</h3><h3 id="method-메서드"><a href="#method-메서드" class="headerlink" title="method() 메서드"></a>method() 메서드</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.method !== <span class="string">'function'</span> )  &#123;</div><div class="line">    <span class="built_in">Function</span>.prototype.method = <span class="function"><span class="keyword">function</span> (<span class="params">name, implementation</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.prototype[name] = implementation;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://eggplantwo.github.io/2017/04/21/객체생성패턴/" data-id="cj1rhwtqt0007jgeab5nzvcam" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/04/21/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Hello World
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/04/21/디자인패턴/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">디자인패턴</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/composer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/composer.jpg)" alt="composer" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/php/">php</a></p>
+                            <p class="item-title"><a href="/2017/04/21/composer/" class="title">composer</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:10:04.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/CSS_Transition/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/css/">css</a></p>
+                            <p class="item-title"><a href="/2017/04/21/CSS_Transition/" class="title">CSS 트랜지션</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:04:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/함수패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="함수 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/함수패턴/" class="title">함수 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/코드재사용패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="코드 재사용 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/코드재사용패턴/" class="title">코드 재사용 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/웹팩이란/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="웹팩이란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/웹팩이란/" class="title">웹팩이란</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:02:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 jaepil Jung</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://eggplantwo.github.io/2017/04/21/객체생성패턴/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

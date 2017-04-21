@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>디자인패턴 | 가지가지하는 블로그</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="디자인 패턴싱글톤(Singleton)123456789101112131415161718192021function Universe() &amp;#123;    // 캐싱된 인스터스    var instance;    // 생성자를 재작성한다.    Universe = function Universe() &amp;#123;        return instance;    &amp;#">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="디자인패턴">
+<meta property="og:url" content="http://eggplantwo.github.io/2017/04/21/디자인패턴/index.html">
+<meta property="og:site_name" content="가지가지하는 블로그">
+<meta property="og:description" content="디자인 패턴싱글톤(Singleton)123456789101112131415161718192021function Universe() &amp;#123;    // 캐싱된 인스터스    var instance;    // 생성자를 재작성한다.    Universe = function Universe() &amp;#123;        return instance;    &amp;#">
+<meta property="og:image" content="http://eggplantwo.github.io/2017/04/21/디자인패턴/img/js.png">
+<meta property="og:updated_time" content="2017-04-21T07:07:29.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="디자인패턴">
+<meta name="twitter:description" content="디자인 패턴싱글톤(Singleton)123456789101112131415161718192021function Universe() &amp;#123;    // 캐싱된 인스터스    var instance;    // 생성자를 재작성한다.    Universe = function Universe() &amp;#123;        return instance;    &amp;#">
+<meta name="twitter:image" content="http://eggplantwo.github.io/2017/04/21/디자인패턴/img/js.png">
+    
+
+    
+        <link rel="alternate" href="/" title="가지가지하는 블로그" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">가지가지하는 블로그</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/css/">css</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/javascript/">javascript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/php/">php</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/javascript/">javascript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-디자인패턴" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        디자인패턴
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2017/04/21/디자인패턴/" class="article-date">
+            <time datetime="2017-04-21T07:01:31.000Z" itemprop="datePublished">2017-04-21</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="디자인-패턴"><a href="#디자인-패턴" class="headerlink" title="디자인 패턴"></a>디자인 패턴</h1><h2 id="싱글톤-Singleton"><a href="#싱글톤-Singleton" class="headerlink" title="싱글톤(Singleton)"></a>싱글톤(Singleton)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Universe</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 캐싱된 인스터스</span></div><div class="line">    <span class="keyword">var</span> instance;</div><div class="line"></div><div class="line">    <span class="comment">// 생성자를 재작성한다.</span></div><div class="line">    Universe = <span class="function"><span class="keyword">function</span> <span class="title">Universe</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// prototype 프로퍼티를 변경한다.</span></div><div class="line">    Universe.prototype = <span class="keyword">this</span>;</div><div class="line"></div><div class="line">    <span class="comment">// instance</span></div><div class="line">    instance = <span class="keyword">new</span> Universe();</div><div class="line"></div><div class="line">    <span class="comment">// 생성자 포인터를 재지정 한다.</span></div><div class="line">    instance.constructor = Universe;</div><div class="line"></div><div class="line">    instance.start_time = <span class="number">0</span>;</div><div class="line">    instance.bang = <span class="string">'Big'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="팩터리-Factory"><a href="#팩터리-Factory" class="headerlink" title="팩터리(Factory)"></a>팩터리(Factory)</h2><p>팩터리 패턴의 목적은 객체들을 생성하는 것이다.<br>팩터리 패턴은 흔히 클래스 내부에서 또는 클래스의 스태틱 메서드로 구현되며, 다음과 같은 목적으로 사용된다.</p>
+<ul>
+<li>비슷한 객체를 생성하는 반복 작업을 수행한다.</li>
+<li>팩터리 패턴의 사용자가 컴파일 타임에 구체적인 타입(클래스)을 모르고도 객체를 생성할 수 있게 해준다.</li>
+</ul>
+<p>팩터리 메서드(또는 클래스)로 만들어진 객체들은 의도적으로 동일한 부모 객체를 상속한다.<br>즉, 이들은 특화된 기능을 구현하는 구체적인 서브 클래스들이다.<br>어떤 경우에는 공통의 부모 클래스가 팩터리 메서드를 갖고 있기도 한다.</p>
+<ul>
+<li>CarMaker 생성자 : 공통의 부모</li>
+<li>CarMaker.factory() : car 객체들을 생성하는 스태틱 메서드</li>
+<li>CarMaker.Compact, CarMaker.SUV, CarMaker.Convertible : CarMaker 를 상속하는 특화된 생성자.<br>이 모두는 부모의 스태틱 프로터티로 정의되어 전역 네임스페이스를 깨끗이 유지하며, 필요할 때 쉽게 찾을 수 있다.</li>
+</ul>
+<p>사용예</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  corolla = CarMaker.factory(<span class="string">'Compact'</span>);</div><div class="line"><span class="keyword">var</span>  solstice = CarMaker.factory(<span class="string">'Convertible'</span>);</div><div class="line"><span class="keyword">var</span>  cherokee = CarMaker.factory(<span class="string">'SUV'</span>);</div><div class="line">corolla.drive(); <span class="comment">// Vroom, I have 4 doors;</span></div><div class="line">solstice.drive(); <span class="comment">// Vroom, I have 2 doors;</span></div><div class="line">cherokee.drive(); <span class="comment">// Vroom, I have 17 doors;</span></div></pre></td></tr></table></figure>
+<p>이 부분을 눈여겨 보자<br>var corolla = CarMaker.factory(‘Compact’);<br>이 부분이 아마도 팩터리 패턴에서 가장 특징적인 부분일 것이다.<br>이 메서드는 런타임시 문자열로 타입을 받아 해당 타입의 객체를 생성하고 반환한다.<br>new와 함께 생성자를 사용하지 않고, 객체 리터럴도 보이지 않는다.</p>
+<p>팩터리 패턴 구현 예<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">CarMaker</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line"></div><div class="line">CarMaker.prototype.dirve = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Vroom, I have '</span> + <span class="keyword">this</span>.doors + <span class="string">' doors'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">CarMaker.factory = <span class="function"><span class="keyword">function</span> (<span class="params">type</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> constr = type,</div><div class="line">        newcar;</div><div class="line"></div><div class="line">    <span class="comment">// 생성자가 존재하지 않으면 에러 발생</span></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> CarMaker[constr] !== <span class="string">'function'</span> ) &#123;</div><div class="line">        <span class="keyword">throw</span> &#123;</div><div class="line">            <span class="attr">name</span> : <span class="string">'Error'</span>,</div><div class="line">            <span class="attr">message</span> : constr + <span class="string">' doesn`t exist'</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 생성자의 존재를 확인했으므로 부모를 상속한다.</span></div><div class="line">    <span class="comment">// 상속은 단 한번만 실행된다.</span></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> CarMaker[constr].prototype.drive !== <span class="string">'function'</span> ) &#123;</div><div class="line">        CarMaker[constr].prototype = <span class="keyword">new</span> CarMaker();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 새로운 인스톤스 생성</span></div><div class="line">    newcar = <span class="keyword">new</span> CarMaker[constr]();</div><div class="line"></div><div class="line">    <span class="comment">// 다른 메서드 호출이 필요하면 여기서 실핼한 후, 인스턴스를 반환한다.</span></div><div class="line">    <span class="keyword">return</span> newcar;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 구체화</span></div><div class="line">CarMaker.Compact = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.door = <span class="number">4</span>;</div><div class="line">&#125;</div><div class="line">CarMaker.Convertible = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.door = <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line">CarMaker.SUV = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.door = <span class="number">24</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="반복자-Iterator"><a href="#반복자-Iterator" class="headerlink" title="반복자(Iterator)"></a>반복자(Iterator)</h2><p>데이터가 저장된 내부구조는 복잡하더라도 개별 요소에 쉽게 접근할 방법이 필요하다.<br>사용자는 데이터 구조를 알 필요가 없이, 개별 요소로 원하는 작업을 할수만 있으면 된다.</p>
+<h2 id="장식자-Decorator"><a href="#장식자-Decorator" class="headerlink" title="장식자(Decorator)"></a>장식자(Decorator)</h2><p>런타임시 부가적인 기능을 객체에 동적으로 추가할 수 있다.<br>특징은 기대되는 행위를 사용자화하거나 설정할 수 있다는 것이다.<br>처음에는 기본적인 몇 가지 기능을 가지는 평범한 객체로 시작한다. 그런다음 사용 가능한 장식자들의 풀(poll)에 원하는 것을 골라 객체에 기능을 덧 붙여간다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sale = <span class="keyword">new</span> Sale(<span class="number">100</span>);</div><div class="line">sale = sale.decorate(<span class="string">'fedtax'</span>);</div><div class="line">sale = sale.decorate(<span class="string">'quebec'</span>);</div><div class="line">sale = sale.decorate(<span class="string">'money'</span>);</div><div class="line">sale.getPrice();</div></pre></td></tr></table></figure>
+<p>getPrice()를 호출하면 money 장식자의 동일한 메서드를 호출한 셈이된다. 그러나 각각의 꾸며진 메서드는 우선 부모의 메서드를 호출하기 때문에,<br>money의 getPrice()는 quebec의 getPrice()를 호출하고, 다시 fedtax의 getPrice를 호출하는 식으로 차례대로 거슬러 올라 간다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sale</span>(<span class="params">price</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.price = price || <span class="number">100</span>;</div><div class="line">&#125;</div><div class="line">Sale.prototype.getPrice = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.price;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 장식자 객체들은 생성자 프로퍼티 Sale.decorators의 프로퍼티로 구현된다.</span></div><div class="line">Sale.decorators = &#123;&#125;</div><div class="line">Sale.decorators.fedtax = &#123;</div><div class="line">    <span class="attr">getPrice</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> price = <span class="keyword">this</span>.uber.getPrice();</div><div class="line">        price += price * <span class="number">5</span> / <span class="number">100</span>;</div><div class="line">        <span class="keyword">return</span> price;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Sale.decorators.fedtax = &#123;</div><div class="line">    <span class="attr">getPrice</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> price = <span class="keyword">this</span>.uber.getPrice();</div><div class="line">        price += price * <span class="number">5</span> / <span class="number">100</span>;</div><div class="line">        <span class="keyword">return</span> price;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Sale.decorators.quebec = &#123;</div><div class="line">    <span class="attr">getPrice</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> price = <span class="keyword">this</span>.uber.getPrice();</div><div class="line">        price += price * <span class="number">7.5</span> / <span class="number">100</span>;</div><div class="line">        <span class="keyword">return</span> price;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Sale.decorators.money = &#123;</div><div class="line">    <span class="attr">getPrice</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'$'</span> + <span class="keyword">this</span>.uber.getPrice().toFixed(<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Sale.decorators.cdn = &#123;</div><div class="line">    <span class="attr">getPrice</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'CDN$'</span> + <span class="keyword">this</span>.uber.getPrice().toFixed(<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 모든 조각들을 짜맞추는 마법의 decorate() 메서드.</span></div><div class="line">sale = sale.decorate(<span class="string">'fedtax'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 임시생성자 패턴을 이용해 상속을 구현하고, 자식 객체가 부모 객체에 접근 할 수 있도록 newobj에 uber 프로퍼티 지정.</span></div><div class="line"></div><div class="line">Sale.prototype.decorate = <span class="function"><span class="keyword">function</span>(<span class="params">decorator</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line">        overrides = <span class="keyword">this</span>.constructor.decorators[decorator],</div><div class="line">        i, newobj;</div><div class="line">    F.prototype = <span class="keyword">this</span>;</div><div class="line">    newobj = <span class="keyword">new</span> F();</div><div class="line">    newobj.uber = F.prototpye;</div><div class="line">    <span class="keyword">for</span> ( i <span class="keyword">in</span> overrides ) &#123;</div><div class="line">        <span class="keyword">if</span> ( overrides.hasOwnProperty(i) ) &#123;</div><div class="line">            newobj[i] = overrides[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newobj;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 다름 방식 (큐에 에 답아서 ..)</span></div><div class="line">Sale.prototype.decorate = <span class="function"><span class="keyword">function</span>(<span class="params">decorator</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.decorators_list.push(decorator);</div><div class="line">&#125;</div><div class="line">Sale.prototype.getPrice = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> price = <span class="keyword">this</span>.price,</div><div class="line">        i,</div><div class="line">        max = <span class="keyword">this</span>.decorators_list.length,</div><div class="line">        name;</div><div class="line">    <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; max; i++ ) &#123;</div><div class="line">        name = <span class="keyword">this</span>.decorators_list[i];</div><div class="line">        price = Sale.decorators[name].getPrice(price);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="전략"><a href="#전략" class="headerlink" title="전략"></a>전략</h2><p>데이터 유효성 검사 예제</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = &#123;</div><div class="line">    <span class="attr">first_name</span> : <span class="string">'super'</span>,</div><div class="line">    <span class="attr">last_name</span> : <span class="string">'man'</span>,</div><div class="line">    <span class="attr">age</span> : <span class="string">'unknow'</span>,</div><div class="line">    <span class="attr">username</span> : <span class="string">'o_o'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">validator.config = &#123;</div><div class="line">    <span class="attr">first_name</span> : <span class="string">'isNonEmpty'</span>,</div><div class="line">    <span class="attr">age</span> : <span class="string">'isNumber'</span>,</div><div class="line">    <span class="attr">username</span> : <span class="string">'isAlphaNum'</span>    </div><div class="line">&#125;</div><div class="line"></div><div class="line">validator.validate(data);</div><div class="line"><span class="keyword">if</span> ( validator.hasErrors() ) &#123;</div><div class="line">    <span class="built_in">console</span>.log(validator.message.join(<span class="string">"\n"</span>));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 값을 가지는지 확인</span></div><div class="line">validator.types.isNonEmpty = &#123;</div><div class="line">    <span class="attr">validate</span> : <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> value !==<span class="string">''</span>;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">instructions</span> : <span class="string">'이 값은 필수 입니다.'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 숫자 값인지 확인한다.</span></div><div class="line">validator.type.isNumber = &#123;</div><div class="line">    <span class="attr">validate</span> : <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> !isNan(value);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">instructions</span> : <span class="string">'숫자만 사용할 수 있습니다.'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 값이 문자와 숫자로만 이루어졌는지 확인한다.</span></div><div class="line">validator.types.isAlphaNum = &#123;</div><div class="line">    <span class="attr">validate</span> : <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> !<span class="regexp">/[^a-z0-9]/i</span>.test(value);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">instructions</span> : <span class="string">'특수 문자를 제외한 글자와 숫자만 사용할 수 있습니다.'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> validator = &#123;</div><div class="line">    <span class="comment">// 사용할 수 있는 모든 검사 방법들</span></div><div class="line">    types : &#123;&#125;,</div><div class="line">    <span class="comment">// 검사 메세지들</span></div><div class="line">    messages : [],</div><div class="line">    <span class="comment">// 유효성 검사 설정</span></div><div class="line">    config : &#123;&#125;,</div><div class="line"></div><div class="line">    <span class="comment">// 인터페이스 메서드</span></div><div class="line">    validate : <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> i, msg, type, checker, result_ok;</div><div class="line"></div><div class="line">        <span class="keyword">this</span>.messages = [];</div><div class="line"></div><div class="line">        <span class="keyword">for</span> ( i <span class="keyword">in</span> data ) &#123;</div><div class="line">            <span class="keyword">if</span> ( data.hasOwnProperty(i) ) &#123;</div><div class="line">                type = <span class="keyword">this</span>.config[i];</div><div class="line">                checker = <span class="keyword">this</span>.types[type];</div><div class="line"></div><div class="line">                <span class="keyword">if</span> ( !type ) &#123;</div><div class="line">                    <span class="keyword">continue</span>; <span class="comment">//설정값이 없을때 건너뜀</span></div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="comment">// 설정이 존재하지 않거나 오류 발생시</span></div><div class="line">                <span class="keyword">if</span> ( !checker ) &#123;</div><div class="line">                    <span class="keyword">throw</span> &#123;</div><div class="line">                        <span class="attr">name</span> : <span class="string">'ValidationError'</span>,</div><div class="line">                        <span class="attr">message</span> : type + <span class="string">'값을 처리할 유효성 검사기가 존재하지 않습니다.'</span></div><div class="line">                    &#125;;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                result_ok = checker.validate(data[i]);</div><div class="line">                <span class="keyword">if</span> ( !result_ok ) &#123;</div><div class="line">                    msg = ㅑ + <span class="string">'값이 유효하지 않습니다.'</span> + checker.instructions;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.Errors();</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">hasErrors</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.messages.length !== <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="퍼사드-Facade"><a href="#퍼사드-Facade" class="headerlink" title="퍼사드(Facade)"></a>퍼사드(Facade)</h2><h2 id="프록시-Proxy"><a href="#프록시-Proxy" class="headerlink" title="프록시(Proxy)"></a>프록시(Proxy)</h2><h2 id="중재자-Mediator"><a href="#중재자-Mediator" class="headerlink" title="중재자(Mediator)"></a>중재자(Mediator)</h2><p>이 패턴은 결합도를 낮추고 유지보수를 쉽게 개선하여 완화시킬수 있다.<br>객체들은 직접 통신하지 않고 중재자를거쳐 중재자에게 알리고, 중재자는 이 변경사항을 알아야하는 객체들에게 알린다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Player</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.points = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Player.prototype.play = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.points += <span class="number">1</span>;</div><div class="line">    mediator.played();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> scoreboard = &#123;</div><div class="line">    <span class="comment">// 점수를 표시할 HTML 엘리먼트</span></div><div class="line">    element : <span class="built_in">document</span>.getElementById(<span class="string">'results'</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 점수 표시를 갱신한다.</span></div><div class="line">    update : <span class="function"><span class="keyword">function</span> (<span class="params">score</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> i, msg = <span class="string">''</span>;</div><div class="line">        <span class="keyword">for</span> ( i <span class="keyword">in</span> score ) &#123;</div><div class="line">            <span class="keyword">if</span> ( score.hasOwnProperty(i) ) &#123;</div><div class="line">                msg += <span class="string">'&lt;p&gt;&lt;srtong&gt;'</span>+i+<span class="string">'&lt;/srtong&gt;'</span>;</div><div class="line">                msg += scord[i];</div><div class="line">                msg += <span class="string">'&lt;/p&gt;'</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.element.innerHTML = msg;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> mediator = &#123;</div><div class="line"></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="감시자-Observer"><a href="#감시자-Observer" class="headerlink" title="감시자(Observer)"></a>감시자(Observer)</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> publisher = &#123;</div><div class="line">    <span class="attr">subscribers</span> : &#123;</div><div class="line">        <span class="attr">any</span> : [] <span class="comment">// '이벤트 타입 : 구독자의 배열'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">subscribe</span> : <span class="function"><span class="keyword">function</span>(<span class="params"> fn, type </span>) </span>&#123;</div><div class="line">        type = type || <span class="string">'any'</span>;</div><div class="line">        <span class="keyword">if</span> ( <span class="keyword">typeof</span> <span class="keyword">this</span>.subscribers[type] === <span class="string">'undefiend'</span> ) &#123;</div><div class="line">            <span class="keyword">this</span>.subscribers[type] = [];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.subscribers[type].push(fn);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">unsubscribe</span> : <span class="function"><span class="keyword">function</span>(<span class="params"> fn, type </span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.visitSubscribers(<span class="string">'unsubscribe'</span>, fn, type);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">publish</span> : <span class="function"><span class="keyword">function</span>(<span class="params">publication, type</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.visitSubscribers(<span class="string">'publish'</span>, publication, type);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">visitSubscribers</span> : <span class="function"><span class="keyword">function</span>(<span class="params">action, arg, type</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> pubtype =  type || <span class="string">'any'</span>,</div><div class="line">            subscribers = <span class="keyword">this</span>.subscribers[pubtype],</div><div class="line">            i,</div><div class="line">            max = subscribers.length;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; max; i++ ) &#123;</div><div class="line">            <span class="keyword">if</span> ( action === <span class="string">'publish'</span> ) &#123;</div><div class="line">                subscribers[i](arg);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">if</span> ( subscribers[i] === arg ) &#123;</div><div class="line">                    subscribers.splice(i, <span class="number">1</span>)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 객체를 받아 발행자 객체로 바꿔준다.</span></div><div class="line"><span class="comment">// 단순히 해당 객체에 범용 발행자 메서드들을 복사해 넣는다.(deep copy)</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makePublisher</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> i;</div><div class="line">    <span class="keyword">for</span> ( i <span class="keyword">in</span> publisher ) &#123;</div><div class="line">        <span class="keyword">if</span> ( publisher.hasOwnProperty(i) &amp;&amp;</div><div class="line">             <span class="keyword">typeof</span> publisher[i] === <span class="string">'function'</span> ) &#123;</div><div class="line">           o[i] = publisher[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    o.subscribers = &#123;<span class="attr">any</span> : []&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> paper = &#123;</div><div class="line">    <span class="attr">daily</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.publish(<span class="string">'big news today'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">monthly</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.publish(<span class="string">'interesting analysis'</span>, <span class="string">'monthly'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// paper을 발행자로 만든다.</span></div><div class="line">makePublisher(paper)</div><div class="line"></div><div class="line"><span class="comment">// 구독자 joe</span></div><div class="line"><span class="keyword">var</span> joe = &#123;</div><div class="line">    <span class="attr">drinkCoffee</span> : <span class="function"><span class="keyword">function</span> (<span class="params">paper</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(paper + <span class="string">'를 읽었습니다.'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">sundayPreNap</span> : <span class="function"><span class="keyword">function</span> (<span class="params">monthly</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'잠들기 전에'</span> + monthly + <span class="string">'를 읽고 있습니다.'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">paper의 구독자 목록에 joe를 추가</div><div class="line">paper.subscrib(joe.drinkCoffee);</div><div class="line">paper.subscrib(joe.sundayPreNap, <span class="string">'monthly'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 이벤트 발생 실행</span></div><div class="line">paper.daily();</div><div class="line">paper.daily();</div><div class="line">paper.daily();</div><div class="line">paper.monthly();</div></pre></td></tr></table></figure>
+<p>paper 객체 내에서 joe를 하드코딩하지 않았고 , joe 객체 안에서도 역시 paper 객체를 하드코딩 하지 않았다는 점에서 훌륭하다.<br>모든 내용을 알고 있는 중재자 객체가 존재하지도 않는다.<br>객체들은 느슨하게 결합되었고, 이 객체들을 전혀 수정하지 않고 paper에 수많은 구독자를 추가할 수 있다.<br>구독 해지도 언제든지 가능하다.</p>
+<h3 id="예제-2-키-누르기"><a href="#예제-2-키-누르기" class="headerlink" title="예제 2 키 누르기"></a>예제 2 키 누르기</h3><p>```js<br>var publisher = {<br>    subscribers : {<br>        any : [] // ‘이벤트 타입 : 구독자의 배열’<br>    },<br>    on : function( type, fn, context ) {<br>        type = type || ‘any’;<br>        fn = typeof fn === ‘function’ ? fn : context[fn];</p>
+<pre><code>    if ( typeof this.subscribers[type] == &apos;undefined&apos; ) {
+        this.subscribers[type] = [];
+    }
+
+    this.subscribers[type].push({
+        fn : fn,
+        context : context || this
+    });
+},
+remove : function( type, fn, context ) {
+    this.visitSubscribers(&apos;unsubscribe&apos;, type, fn, context);
+},
+fire : function( type, publication ) {
+    this.visitSubscribers(&apos;publish&apos;, type, publication);
+},
+visitSubscribers : function(action, type, arg, context) {
+    var pubtype =  type || &apos;any&apos;,
+        subscribers = this.subscribers[pubtype],
+        i,
+        max = subscribers.length;
+
+    for ( i = 0; i &lt; max; i++ ) {
+        if ( action === &apos;publish&apos; ) {
+            subscribers[i].fn.call(subscribers[i].context, arg);
+        } else {
+            if ( subscribers[i].fn === arg &amp;&amp;
+                 subscribers[i].context === context) {
+                subscribers.splice(i, 1)
+            }
+        }
+    }
+}
+</code></pre><p>}</p>
+<p>function Player(name, key) {<br>    this.points = 0;<br>    this.name = name;<br>    this.key = key;<br>    this.fire(‘newplayer’, this);<br>}</p>
+<p>Player.prototype.play = function() {<br>    this.points += 1;<br>    this.fire(‘play’, this);<br>}</p>
+<p>var game = {<br>    keys : {}<br>    addPlayer : function(player) {<br>        var key = player.key.toString().charCodeAt(0);<br>        this.keys[key] = player;<br>    },<br>    handleKeypress : function(e) {<br>        e = e || window.event;<br>        if ( game.keys[e.which] ) {<br>            game.keys[e.which].play();<br>        }<br>    },<br>    handlePlay : function(player) {<br>        var i,<br>            players = this.keys,<br>            score = {};<br>        for ( i in players ) {<br>            if ( players.hasOwnProperty(i) ) {<br>                score[players[i].name] = players[i].points;<br>            }<br>        }<br>        this.fire(‘scorechange’, score);<br>    }<br>}</p>
+<p>makePublisher(Player.prototype);<br>makePublisher(game);</p>
+<p>/**</p>
+<ul>
+<li>game 객체는 play와 newplayer 이벤트 브라우저의 keypress 이벤트를 구독한다.</li>
+<li>scoreboard 객체는 scorechange 이벤트를 구독한다.<br>*/</li>
+</ul>
+<p>Player.prototype.on(‘newplayer’, ‘addPlayer’, game);<br>Player.prototype.on(‘newplayer’, ‘handlePlayer’, game);<br>game.on(‘scorechange’, scoreboard.update, scoreboard);<br>window.onkeypress = game.handleKeypress;</p>
+<p>// TEST CODE —————–</p>
+<p>function makePublisher(o) {<br>    var i;<br>    for ( i in publisher ) {<br>        if ( publisher.hasOwnProperty(i) &amp;&amp;<br>             typeof publisher[i] === ‘function’ ) {<br>           o[i] = publisher[i];<br>        }<br>    }<br>    o.subscribers = {any : []};<br>}<br>var scoreboard = {<br>    // 점수를 표시할 HTML 엘리먼트<br>    element : document.getElementById(‘results’),</p>
+<pre><code>// 점수 표시를 갱신한다.
+update : function (score) {
+  console.log(&apos;scoreboard.update&apos;);
+</code></pre><p>//         var i, msg = ‘’;<br>//         for ( i in score ) {<br>//             if ( score.hasOwnProperty(i) ) {<br>//                 msg += ‘</p><p><srtong>‘+i+’</srtong>‘;<br>//                 msg += scord[i];<br>//                 msg += ‘</p>‘<br>//             }<br>//         }<br>//         this.element.innerHTML = msg;<br>    }<br>}<p></p>
+<p>var publisher = {<br>    subscribers : {<br>        any : [] // ‘이벤트 타입 : 구독자의 배열’<br>    },<br>    on : function( type, fn, context ) {<br>        type = type || ‘any’;<br>        fn = typeof fn === ‘function’ ? fn : context[fn];</p>
+<pre><code>    if ( typeof this.subscribers[type] == &apos;undefined&apos; ) {
+        this.subscribers[type] = [];
+    }
+
+    this.subscribers[type].push({
+        fn : fn,
+        context : context || this
+    });
+},
+remove : function( type, fn, context ) {
+    this.visitSubscribers(&apos;unsubscribe&apos;, type, fn, context);
+},
+fire : function( type, publication ) {
+    this.visitSubscribers(&apos;publish&apos;, type, publication);
+},
+visitSubscribers : function(action, type, arg, context) {
+    //console.log(action, type, arg);
+    var pubtype =  type || &apos;any&apos;,
+        subscribers = this.subscribers[pubtype],
+        i,
+        max = subscribers.length;
+
+    for ( i = 0; i &lt; max; i++ ) {
+        if ( action === &apos;publish&apos; ) {
+            subscribers[i].fn.call(subscribers[i].context, arg);
+        } else {
+            if ( subscribers[i].fn === arg &amp;&amp;
+                 subscribers[i].context === context) {
+                subscribers.splice(i, 1)
+            }
+        }
+    }
+}
+</code></pre><p>}</p>
+<p>function Player(name, key) {<br>    this.points = 0;<br>    this.name = name;<br>    this.key = key;<br>    this.fire(‘newplayer’, this);<br>}</p>
+<p>Player.prototype.play = function() {<br>    this.points += 1;<br>    this.fire(‘newplayer’, this);<br>}</p>
+<p>var game = {<br>    keys : {},<br>    addPlayer : function(player) {<br>      console.log(‘add player’);<br>//         var key = player.key.toString().charCodeAt(0);<br>//         this.keys[key] = player;<br>    },<br>    handleKeypress : function(e) {<br>        e = e || window.event;<br>        if ( game.keys[e.which] ) {<br>            game.keys[e.which].play();<br>        }<br>    },<br>    handlePlay : function(player) {<br>        var i,<br>            players = this.keys,<br>            score = {};<br>        for ( i in players ) {<br>            if ( players.hasOwnProperty(i) ) {<br>                score[players[i].name] = players[i].points;<br>            }<br>        }<br>        this.fire(‘scorechange’, score);<br>    }<br>}</p>
+<p>makePublisher(Player.prototype);<br>makePublisher(game);</p>
+<p>/**</p>
+<ul>
+<li>game 객체는 play와 newplayer 이벤트 브라우저의 keypress 이벤트를 구독한다.</li>
+<li>scoreboard 객체는 scorechange 이벤트를 구독한다.<br>*/</li>
+</ul>
+<p>Player.prototype.on(‘newplayer’, ‘addPlayer’, game);<br>Player.prototype.on(‘newplayer’, ‘handlePlay’, game);<br>game.on(‘scorechange’, scoreboard.update, scoreboard);</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://eggplantwo.github.io/2017/04/21/디자인패턴/" data-id="cj1rhwtql0004jgea4qihs68d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/04/21/객체생성패턴/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            객체생성패턴
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/04/21/웹팩이란/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">웹팩이란</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/composer/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/composer.jpg)" alt="composer" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/php/">php</a></p>
+                            <p class="item-title"><a href="/2017/04/21/composer/" class="title">composer</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:10:04.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/CSS_Transition/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/css/">css</a></p>
+                            <p class="item-title"><a href="/2017/04/21/CSS_Transition/" class="title">CSS 트랜지션</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:04:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/함수패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="함수 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/함수패턴/" class="title">함수 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/코드재사용패턴/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="코드 재사용 패턴" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/코드재사용패턴/" class="title">코드 재사용 패턴</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:03:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/21/웹팩이란/" class="thumbnail">
+    
+    
+        <span style="background-image:url(img/js.png)" alt="웹팩이란" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javascript/">javascript</a></p>
+                            <p class="item-title"><a href="/2017/04/21/웹팩이란/" class="title">웹팩이란</a></p>
+                            <p class="item-date"><time datetime="2017-04-21T07:02:31.000Z" itemprop="datePublished">2017-04-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 jaepil Jung</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://eggplantwo.github.io/2017/04/21/디자인패턴/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
